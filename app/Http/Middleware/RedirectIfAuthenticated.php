@@ -23,6 +23,10 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+
+                if(!Auth::user()->email_verified_at){
+                    return redirect('user/profile')->with('msg','please verify your email!');
+                }
                 return redirect(RouteServiceProvider::HOME);
             }
         }

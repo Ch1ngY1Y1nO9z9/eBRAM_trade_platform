@@ -58,4 +58,14 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function Localization()
+    {
+        return $this->hasOne('App\Models\Localization','usr_id');
+    }
+
+    public function Account()
+    {
+        return $this->hasOne('App\Models\Account','usr_id');
+    }
 }

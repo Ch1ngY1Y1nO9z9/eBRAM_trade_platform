@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +25,10 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+        if (Auth::user()->email_verified_at) {
+            return view('/template/index');
+        }
+
+        return redirect('user/profile')->with('msg', 'please verify your email and fill out all the account information for the business');
+    })->name('index');
 });

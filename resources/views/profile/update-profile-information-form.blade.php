@@ -10,12 +10,9 @@
     <x-slot name="form">
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-            <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
+            <div x-data="{ photoName: null, photoPreview: null }" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
-                <input type="file" class="hidden"
-                            wire:model="photo"
-                            x-ref="photo"
-                            x-on:change="
+                <input type="file" class="hidden" wire:model="photo" x-ref="photo" x-on:change="
                                     photoName = $refs.photo.files[0].name;
                                     const reader = new FileReader();
                                     reader.onload = (e) => {
@@ -28,13 +25,14 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}"
+                        class="rounded-full h-20 w-20 object-cover">
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" x-show="photoPreview" style="display: none;">
                     <span class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
-                          x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
+                        x-bind:style="'background-image: url(\'' + photoPreview + '\');'">
                     </span>
                 </div>
 
@@ -55,7 +53,8 @@
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name"
+                autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
@@ -65,11 +64,12 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
 
-            @unless ($this->user->hasVerifiedEmail())
+            @unless($this->user->hasVerifiedEmail())
                 <p class="text-sm mt-2">
                     {{ __('Your email address is unverified.') }}
 
-                    <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900" wire:click.prevent="sendEmailVerification">
+                    <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900"
+                        wire:click.prevent="sendEmailVerification">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
@@ -79,17 +79,39 @@
                         {{ __('A new verification link has been sent to your email address.') }}
                     </p>
                 @endif
-            @endif
-        </div>
-    </x-slot>
+                @endif
+            </div>
 
-    <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="email_2" value="{{ __('Backup Email') }}" />
+                <x-jet-input id="email_2" type="email" class="mt-1 block w-full" wire:model.defer="state.email_2" />
+                <x-jet-input-error for="email_2" class="mt-2" />
+            </div>
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
-            {{ __('Save') }}
-        </x-jet-button>
-    </x-slot>
-</x-jet-form-section>
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="jobtitle" value="{{ __('Job Title') }}" />
+                <x-jet-input id="jobtitle" type="text" class="mt-1 block w-full" wire:model.defer="state.jobtitle"
+                    autocomplete="jobtitle" />
+                <x-jet-input-error for="jobtitle" class="mt-2" />
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <x-jet-label for="phone_1" value="{{ __('Phone') }}" />
+                <x-jet-input id="phone_1" type="text" class="mt-1 block w-full" wire:model.defer="state.phone_1"
+                    autocomplete="phone_1" />
+                <x-jet-input-error for="phone_1" class="mt-2" />
+            </div>
+        </x-slot>
+
+
+
+        <x-slot name="actions">
+            <x-jet-action-message class="mr-3" on="saved">
+                {{ __('Saved.') }}
+            </x-jet-action-message>
+
+            <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+                {{ __('Save') }}
+            </x-jet-button>
+        </x-slot>
+    </x-jet-form-section>
