@@ -11,7 +11,7 @@
 
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="tel" value="{{ __('*Tel') }}" />
+            <x-jet-label class="text-red-700" for="tel" value="{{ __('*Tel') }}" />
             <x-jet-input id="tel" type="text" class="mt-1 block w-full" wire:model.defer="account.tel" />
             <x-jet-input-error for="tel" class="mt-2" />
         </div>

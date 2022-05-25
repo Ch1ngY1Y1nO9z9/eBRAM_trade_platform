@@ -26,31 +26,31 @@
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="country" value="{{ __('*Country') }}" />
             <x-jet-input id="country" type="text" class="mt-1 block w-full" wire:model.defer="local.country" />
-            <x-jet-input-error for="country" class="mt-2" />
+            <x-jet-input-error for="local.country" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="dial" value="{{ __('*Country Code') }}" />
             <x-jet-input id="dial" type="text" class="mt-1 block w-full" wire:model.defer="local.dial" />
-            <x-jet-input-error for="dial" class="mt-2" />
+            <x-jet-input-error for="local.dial" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="lang" value="{{ __('*Lang') }}" />
             <x-jet-input id="lang" type="text" class="mt-1 block w-full" wire:model.defer="local.lang" />
-            <x-jet-input-error for="lang" class="mt-2" />
+            <x-jet-input-error for="local.lang" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="currency" value="{{ __('*Currency') }}" />
             <x-jet-input id="currency" type="text" class="mt-1 block w-full" wire:model.defer="local.currency" />
-            <x-jet-input-error for="currency" class="mt-2" />
+            <x-jet-input-error for="local.currency" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="timeUTC" value="{{ __('*UTC') }}" />
             <x-jet-input id="timeUTC" type="text" class="mt-1 block w-full" wire:model.defer="local.timeUTC" />
-            <x-jet-input-error for="timeUTC" class="mt-2" />
+            <x-jet-input-error for="local.timeUTC" class="mt-2" />
         </div>
 
     </x-slot>

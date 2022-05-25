@@ -27,10 +27,8 @@ class UpdateProfileLocalizationForm extends Component
         return view('Livewire.update-profile-localization-form');
     }
 
-    public function updateLocalization($user, array $input)
+    public function updateLocalization()
     {
-        dd($user, $input);
-
         $this->validate();
 
         Auth::user()->Localization->update([$this->local]);
