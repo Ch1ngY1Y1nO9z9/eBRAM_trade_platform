@@ -5,7 +5,8 @@
         <div class="flex flex-wrap items-center">
             <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
                 <a href="#" aria-label="Home">
-                    <img src="https://fakeimg.pl/285x80" alt="">
+                    <!-- <img src="https://fakeimg.pl/285x80" alt=""> -->
+                    <h1 class="text-xl p-5">eBRAM Trade Plateform</h1>
                 </a>
             </div>
 
