@@ -1,3 +1,5 @@
+<x-jet-section-border />
+
 <x-jet-form-section submit="updateLocalization">
     <x-slot name="title">
         {{ __('Localization') }}

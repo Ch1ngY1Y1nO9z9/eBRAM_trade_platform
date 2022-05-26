@@ -1,44 +1,69 @@
 <nav aria-label="alternative nav">
-    <div
-        class="bg-gray-800 shadow-xl h-20 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-48 content-center">
+    <div class="bg-gray-800 shadow-xl h-20 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-52 content-center">
 
         <div
-            class="md:mt-24 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
-            <ul
-                class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
+            class="md:mt-24 md:w-52 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+            <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
                 <li class="mr-3 flex-1">
                     <a href="/dashboard"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <i class="fas fa-tasks pr-0 md:pr-3"></i><span
+                        <span
                             class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dashboard</span>
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
                     <a href="/dashboard"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <i class="fas fa-tasks pr-0 md:pr-3"></i><span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create RFQ</span>
+                        <span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
+                            RFQ</span>
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
                     <a href="#"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <i class="fas fa-tasks pr-0 md:pr-3"></i><span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find Products</span>
+                        <span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find
+                            Products</span>
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
                     <a href="#"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <i class="fas fa-tasks pr-0 md:pr-3"></i><span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Current Case</span>
+                        <span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Case
+                            Management</span>
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
                     <a href="#"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <i class="fas fa-tasks pr-0 md:pr-3"></i><span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Finish Case List</span>
+                        <span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Activity
+                            Scheduler</span>
+                    </a>
+                </li>
+                <li class="mr-3 flex-1">
+                    <a href="#"
+                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                        <span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Notification</span>
+                    </a>
+                </li>
+                <li class="mr-3 flex-1">
+                    <a href="#"
+                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                        <span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">User
+                            profile</span>
+                    </a>
+                </li>
+                <li class="mr-3 flex-1">
+                    <a href="#"
+                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                        <span
+                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Document
+                            Management</span>
                     </a>
                 </li>
                 {{-- <li class="mr-3 flex-1">
