@@ -33,11 +33,8 @@ class UpdateAccountForm extends Component
         return view('livewire.update-account-form');
     }
 
-    public function updateAccount($user)
+    public function updateAccount()
     {
-
-        dd($user);
-
         $this->validate();
 
         Auth::user()->Account->update([$this->account]);

@@ -72,7 +72,7 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="detail" value="{{ __('Detail') }}" />
-            <textarea  class="mt-1 block w-full" id="detail" cols="30" rows="10" wire:model.defer="account.detail">{{ $this->account->detail }}</textarea>
+            <textarea  class="mt-1 block w-full" id="detail" cols="30" rows="10" wire:model.defer="account.detail"></textarea>
         </div>
 
     </x-slot>
