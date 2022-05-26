@@ -39,4 +39,9 @@ Route::middleware([
         return view('/template/index');
         // return redirect('user/profile')->with('msg', 'please verify your email and fill out all the account information for the business');
     })->name('index');
+
+    Route::get('/create_product', function(){
+        return view('/template/createProduct');
+    })->name('creareProduct');
+
 });
