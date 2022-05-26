@@ -1,8 +1,8 @@
 <nav aria-label="alternative nav">
-    <div class="bg-gray-800 shadow-xl h-20 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-52 content-center">
+    <div class="bg-gray-800 shadow-xl h-20 fixed bottom-0 md:relative md:h-screen z-10 w-full md:w-56 content-center">
 
         <div
-            class="md:mt-24 md:w-52 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+            class="md:mt-24 md:w-56 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
             <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
                 <li class="mr-3 flex-1">
                     <a href="/dashboard"
