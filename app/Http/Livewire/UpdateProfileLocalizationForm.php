@@ -24,7 +24,7 @@ class UpdateProfileLocalizationForm extends Component
 
     public function render()
     {
-        return view('Livewire.update-profile-localization-form');
+        return view('livewire.update-profile-localization-form');
     }
 
     public function updateLocalization()
