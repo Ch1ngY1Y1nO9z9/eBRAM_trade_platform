@@ -43,8 +43,6 @@ class CreateNewUser implements CreatesNewUsers
             'role' => $input['role']
         ]);
 
-        dd($user);
-
         // 建立和使用者相關的內容
         Localization::create([
             'usr_id' => $user->id

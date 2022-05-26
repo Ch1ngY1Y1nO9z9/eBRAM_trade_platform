@@ -11,22 +11,38 @@
                             class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dashboard</span>
                     </a>
                 </li>
-                <li class="mr-3 flex-1">
-                    <a href="/dashboard"
-                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
-                            RFQ</span>
-                    </a>
-                </li>
-                <li class="mr-3 flex-1">
-                    <a href="#"
-                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find
-                            Products</span>
-                    </a>
-                </li>
+
+                @if (Auth()->user()->role === 'buyer')
+                    <li class="mr-3 flex-1">
+                        <a href="/dashboard"
+                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <span
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
+                                RFQ</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="#"
+                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <span
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find
+                                Products</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if (Auth()->user()->role === 'seller')
+                    <li class="mr-3 flex-1">
+                        <a href="/dashboard"
+                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <span
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
+                                Products</span>
+                        </a>
+                    </li>
+                @endif
+
+
                 <li class="mr-3 flex-1">
                     <a href="#"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
@@ -51,7 +67,7 @@
                     </a>
                 </li>
                 <li class="mr-3 flex-1">
-                    <a href="#"
+                    <a href="/user/profile"
                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                         <span
                             class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">User
