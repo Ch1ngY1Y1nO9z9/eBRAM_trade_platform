@@ -17,8 +17,12 @@
                 @livewire('profile.update-password-form')
             </div>
         @endif
+        
+        <x-jet-section-border />
 
         @livewire('update-account-form')
+
+        <x-jet-section-border />
         @livewire('update-profile-localization-form')
 
         {{-- @if (Laravel\Fortify\Features::canUpdateProfileInformation())

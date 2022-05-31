@@ -33,15 +33,26 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        // if (Auth::user()->email_verified_at) {
-
-        // }
         return view('/template/index');
-        // return redirect('user/profile')->with('msg', 'please verify your email and fill out all the account information for the business');
     })->name('index');
 
-    Route::get('/create_product', function(){
-        return view('/template/createProduct');
-    })->name('creareProduct');
+    // Seller
+    Route::get('/product', action: App\Http\Livewire\Products\Index::class)->name('creareProduct');
+
+    Route::get('/product/edit/{id}', action: App\Http\Livewire\Products\Edit::class);
+
+
+
+    // Buyer
+
+    // RFQ頁
+    Route::get('/RFQ', action: App\Http\Livewire\RFQ\Index::class)->name('creareRFQ');
+
+    // 產品頁
+    Route::get('/find_product', action: App\Http\Livewire\Find\Index::class)->name('findProduct');
+
+    Route::get('/find_product/detail/{id}', action: App\Http\Livewire\Find\Detail::class);
+
+    
 
 });

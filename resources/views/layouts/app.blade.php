@@ -22,8 +22,11 @@
         integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis=" crossorigin="anonymous"></script>
 
     <!-- Styles -->
-    <script src="https://cdn.tailwindcss.com"></script>
+
     @livewireStyles
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    @stack('css')
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -38,7 +41,17 @@
             @livewire('sidebar-menu')
 
             <section class="w-full pt-[141px] md:pt-[88px] h-screen overflow-y-scroll">
+
                 <div id="main" class="main-content flex-1 bg-gray-100 mt-12 md:mt-2 pb-24 md:pb-5">
+                    <!-- Page Heading -->
+                    @if (isset($header))
+                        <header class="bg-white shadow">
+                            <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                                {{ $header }}
+                            </div>
+                        </header>
+                    @endif
+
                     {{ $slot }}
                 </div>
                 @livewire('layout.footer')
@@ -47,10 +60,9 @@
 
     </main>
 
-
-    @stack('modals')
-
     @livewireScripts
+
+    @stack('script')
 
     <script>
         /*Toggle dropdown list*/

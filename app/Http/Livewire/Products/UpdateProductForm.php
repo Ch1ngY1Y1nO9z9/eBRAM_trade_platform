@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Products;
 
 use App\Models\Products;
+use Illuminate\Support\Facades\App;
 use Livewire\Component;
 
-class CreateProductForm extends Component
+class UpdateProductForm extends Component
 {
-    public $product = [];
+    public $product;
 
     protected $rules = [
-        'product.usr_id' => 'required',
-        'product.product' => 'required',
-        'product.name_en' => 'required',
-        'product.detail' => 'required',
+        'product.type' => 'required',
+        'product.product_name_en' => 'required',
+        'product.detail_en' => 'required',
         'product.unit_price' => 'required',
         'product.weight' => 'nullable',
         'product.height' => 'nullable',
-        'product.widht' => 'nullable',
+        'product.width' => 'nullable',
         'product.length' => 'nullable',
         'product.discount' => 'nullable',
         'product.country' => 'nullable',
@@ -27,14 +27,12 @@ class CreateProductForm extends Component
 
     public function render()
     {
-        return view('livewire.create-product-form');
+        return view('livewire.products.update-product-form');
     }
 
-    public function updateLocalization()
+    public function update()
     {
-        $this->validate();
-
-        Products::create($this->product);
+        $this->product->save();
         $this->emit('saved');
     }
 }

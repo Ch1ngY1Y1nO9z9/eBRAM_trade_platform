@@ -49,8 +49,8 @@
                                 <a href={{ route('profile.show') }}
                                     class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i
                                         class="fa fa-user fa-fw"></i> Profile</a>
-                                <a href={{ route('creareProduct') }}
-                                    class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-archive" aria-hidden="true"></i> Create Product</a>
+                                {{-- <a href={{ route('creareProduct') }}
+                                    class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-archive" aria-hidden="true"></i> Create Product</a> --}}
                                 <div class="border border-gray-800"></div>
                                 <form method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf

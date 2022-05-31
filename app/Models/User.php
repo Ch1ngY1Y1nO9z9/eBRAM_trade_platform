@@ -78,4 +78,21 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Account','usr_id');
     }
+
+    public function Products()
+    {
+        return $this->hasMany('App\Models\Products','usr_id')->orderBy('created_at','DESC');
+    }
+
+    public function RFQ($role)
+    {
+        if($role == 'seller'){
+            return $this->hasMany('App\Models\RFQ','seller_id')->orderBy('created_at','DESC');
+        }
+
+        if($role == 'buyer'){
+            return $this->hasMany('App\Models\RFQ','buyer_id')->orderBy('created_at','DESC');
+        }
+
+    }
 }
