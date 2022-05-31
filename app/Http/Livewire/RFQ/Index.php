@@ -19,7 +19,10 @@ class Index extends Component
 
     public $checkedItem = [];
 
-    public $listeners = ['rfq:delete' => 'delete'];
+    public $listeners = [
+        'rfq:delete' => 'delete',
+        'rfq:updateList' => '$refresh'
+    ];
 
     public function updatingSearch()
     {

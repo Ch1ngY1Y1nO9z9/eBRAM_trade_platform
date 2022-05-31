@@ -42,6 +42,7 @@ class CreateRfqForm extends Component
             $this->emit('swal:success');
             $this->reset();
             $this->rfq = new RFQ();
+            $this->emit('rfq:updateList');
         }
     }
 }
