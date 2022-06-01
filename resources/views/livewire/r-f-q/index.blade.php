@@ -16,7 +16,7 @@
             </nav>
             <button
                 class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0"
-                x-show="!open" @click="open = !open">Back
+                x-show="!open" @click="open = !open" wire:click="$emit('resetInput')">Back
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -68,14 +68,22 @@
                                     <td>{{ $item->product_type }}</td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>
-                                        <img class="max-h-[200px] mx-auto" src="{{ Storage::url($item->product_image) }}" alt="{{$item->product_name}}">
+                                        @if ($item->product_image)
+                                            <img class="max-h-[200px] mx-auto"
+                                                src="{{ Storage::url($item->product_image) }}"
+                                                alt="{{ $item->product_name }}">
+                                        @else
+                                            <div></div>
+                                        @endif
                                     </td>
                                     <td>{{ $item->product_number . $item->unit }}</td>
                                     <td>{{ $item->detail }}</td>
                                     <td>
                                         <div class="flex min-w-[150px] justify-center">
-                                            <a class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
-                                                href="/RFQ/detail/1">詳細</a>
+                                            <button
+                                                class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
+                                                wire:click="$emit('rfq:edit',{{ $item->id }})"
+                                                @click="open = !open">詳細</button>
                                             <button
                                                 class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
                                                 wire:click="$emit('rfq:confirm',{{ $item->id }})">取消</button>
@@ -86,7 +94,7 @@
                         </tbody>
                     </table>
 
-                    {{-- {{ $products->links() }} --}}
+                    {{ $rfq_list->links() }}
                 </div>
             </div>
         </div>

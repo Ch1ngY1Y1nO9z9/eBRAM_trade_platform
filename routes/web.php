@@ -39,10 +39,6 @@ Route::middleware([
     // Seller
     Route::get('/product', action: App\Http\Livewire\Products\Index::class)->name('creareProduct');
 
-    Route::get('/product/edit/{id}', action: App\Http\Livewire\Products\Edit::class);
-
-
-
     // Buyer
 
     // RFQ頁
@@ -53,6 +49,6 @@ Route::middleware([
 
     Route::get('/find_product/detail/{id}', action: App\Http\Livewire\Find\Detail::class);
 
-    
+
 
 });

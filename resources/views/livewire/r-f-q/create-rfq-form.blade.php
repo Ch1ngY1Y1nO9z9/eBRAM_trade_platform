@@ -1,10 +1,10 @@
-<x-jet-form-section submit="create">
+<x-jet-form-section submit="store">
     <x-slot name="title">
         {{ __('RFQ Detail') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('create RFQ for business.') }}
+        {{ __('bulid your own RFQ for business.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -41,7 +41,10 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
-            @if ($photo)
+            @if (is_string($photo))
+                Photo Preview:
+                <img src="{{ $photo }}">
+            @elseif($photo)
                 Photo Preview:
                 <img src="{{ $photo->temporaryUrl() }}">
             @endif
@@ -55,7 +58,7 @@
 
     <x-slot name="actions">
         <x-jet-button wire:loading.attr="disabled">
-            {{ __('Create') }}
+            {{ __('Store') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
@@ -66,7 +69,7 @@
         Livewire.on('swal:success', () => {
             Swal.fire({
                 title: 'Success!',
-                text: 'Create Success!',
+                text: 'Store Success!',
                 icon: 'success',
             })
         });

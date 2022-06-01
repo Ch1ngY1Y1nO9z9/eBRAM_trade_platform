@@ -3,12 +3,24 @@
 namespace App\Http\Livewire\Products;
 
 use App\Models\Products;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
+use Storage;
 
 class CreateProductForm extends Component
 {
+    use WithFileUploads;
+    use WithPagination;
+
     public $product;
+
+    public $photo;
+
+    public $listeners = [
+        'pd:edit' => 'edit',
+        'resetInput'
+    ];
 
     protected $rules = [
         'product.type' => 'required',
@@ -35,17 +47,35 @@ class CreateProductForm extends Component
         return view('livewire.products.create-product-form');
     }
 
-    public function create()
+    public function resetInput()
+    {
+        $this->reset();
+        $this->product = null;
+        $this->photo = null;
+    }
+
+    public function edit($id)
+    {
+        $this->product = Products::find($id);
+        $this->photo = Storage::url($this->product->photo1);
+    }
+
+    public function store()
     {
         $this->validate();
 
-        $this->product->usr_id = Auth::user()->id;
+        $this->product->usr_id = auth()->user()->id;
+
+        if($this->photo){
+            $this->product->photo1 = $this->photo->store('public/photos');
+        }
 
         if($this->product->save()){
-            $this->emit('saved');
+            $this->emit('swal:success');
             $this->reset();
             $this->product = new Products;
-            $this->emit('refreshProducts');
+            $this->photo = null;
+            $this->emit('pd:updateList');
         };
     }
 }

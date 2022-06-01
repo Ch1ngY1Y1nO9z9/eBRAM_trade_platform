@@ -1,10 +1,10 @@
-<x-jet-form-section submit="create">
+<x-jet-form-section submit="store">
     <x-slot name="title">
         {{ __('Product Information') }}
     </x-slot>
 
     <x-slot name="description">
-        {{ __('create your own product for buyer.') }}
+        {{ __('upload your own product for buyer.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -12,6 +12,19 @@
             <x-jet-label for="type" value="{{ __('*Product Type') }}" />
             <x-jet-input id="type" type="text" class="mt-1 block w-full" wire:model="product.type" />
             <x-jet-input-error for="product.type" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            @if (is_string($photo))
+                Photo Preview:
+                <img src="{{ $photo }}">
+            @elseif($photo)
+                Photo Preview:
+                <img src="{{ $photo->temporaryUrl() }}">
+            @endif
+            <x-jet-label for="photo" value="{{ __('*Upload Image') }}" />
+            <x-jet-input id="photo" type="file" class="mt-1 block w-full" wire:model="photo" />
+            <x-jet-input-error for="rfq.product_image" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
@@ -72,12 +85,21 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Update Success!') }}
-        </x-jet-action-message>
-
         <x-jet-button wire:loading.attr="disabled">
-            {{ __('Update') }}
+            {{ __('Store') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>
+
+@push('script')
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        Livewire.on('swal:success', () => {
+            Swal.fire({
+                title: 'Success!',
+                text: 'Store Success!',
+                icon: 'success',
+            })
+        });
+    </script>
+@endpush
