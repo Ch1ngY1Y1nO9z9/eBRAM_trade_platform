@@ -2,8 +2,6 @@
 
 use App\Http\Controllers\CustomPasswordResetLinkController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +37,10 @@ Route::middleware([
     // Seller
     Route::get('/product', action: App\Http\Livewire\Products\Index::class)->name('creareProduct');
 
+    Route::get('/find_rfq', action: App\Http\Livewire\FindRfq\Index::class)->name('findRFQ');
+    Route::get('/find_rfq/detail/{id}', action: App\Http\Livewire\FindRfq\Detail::class);
+
+
     // Buyer
 
     // RFQ頁
@@ -48,7 +50,4 @@ Route::middleware([
     Route::get('/find_product', action: App\Http\Livewire\Find\Index::class)->name('findProduct');
 
     Route::get('/find_product/detail/{id}', action: App\Http\Livewire\Find\Detail::class);
-
-
-
 });
