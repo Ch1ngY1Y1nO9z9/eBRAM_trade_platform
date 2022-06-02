@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('buyer_id')->nullable();
             $table->bigInteger('seller_id')->nullable();
             $table->bigInteger('rfq_id')->nullable();
+            $table->bigInteger('product_id')->nullable();
             $table->bigInteger('number')->nullable();
             $table->string('product_name')->nullable();
             $table->string('price')->nullable();

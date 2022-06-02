@@ -38,6 +38,7 @@ class Detail extends Component
 
         // 檢查若有送出過單則隱藏送出按鈕
         $checkInquiry = Inquiry::where('seller_id',auth()->user()->id)->where('rfq_id', $this->item->id)->first();
+
         if($checkInquiry){
             $this->allowSentInquiry = false;
         }
@@ -57,6 +58,7 @@ class Detail extends Component
     {
         $this->inquiry->buyer_id = $this->item->buyer_id;
         $this->inquiry->seller_id = auth()->user()->id;
+        $this->inquiry->rfq_id = $this->item->id;
         $this->inquiry->product_name = $this->item->product_name;
         $this->inquiry->price = $this->item->product_number * $this->inquiry->number;
         $this->inquiry->status = 'unread';
