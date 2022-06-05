@@ -9,7 +9,6 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-
             <input id="role" type="hidden" name="role"
                 value={{ isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : 'buyer' }}>
 
