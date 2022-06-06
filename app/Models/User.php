@@ -97,4 +97,28 @@ class User extends Authenticatable
         }
 
     }
+
+    public function Inquiry($role)
+    {
+        if($role == 'seller'){
+            return $this->hasMany('App\Models\Inquiry','seller_id')->orderBy('created_at','DESC');
+        }
+        elseif($role == 'buyer'){
+            return $this->hasMany('App\Models\Inquiry','buyer_id')->orderBy('created_at','DESC');
+        }
+        else{
+            return [];
+        }
+
+    }
+
+    public function countTeam()
+    {
+        return count(Team::where('user_id',auth()->user()->id)->get());
+    }
+
+    public function findUser($id)
+    {
+        return User::find($id);
+    }
 }

@@ -35,7 +35,7 @@ Route::middleware([
     })->name('index');
 
     // Seller
-    Route::get('/product', action: App\Http\Livewire\Products\Index::class)->name('creareProduct');
+    Route::get('/product', action: App\Http\Livewire\Products\Index::class)->name('createProduct');
 
     Route::get('/find_rfq', action: App\Http\Livewire\FindRfq\Index::class)->name('findRFQ');
     Route::get('/find_rfq/detail/{id}', action: App\Http\Livewire\FindRfq\Detail::class);
@@ -50,4 +50,7 @@ Route::middleware([
     Route::get('/find_product', action: App\Http\Livewire\Find\Index::class)->name('findProduct');
 
     Route::get('/find_product/detail/{id}', action: App\Http\Livewire\Find\Detail::class);
+
+    // Notification
+    Route::get('/notification', action: App\Http\Livewire\Notification\Index::class)->name('notification');
 });
