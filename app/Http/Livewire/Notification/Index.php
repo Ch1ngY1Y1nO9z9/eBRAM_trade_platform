@@ -39,7 +39,7 @@ class Index extends Component
         $items = $collection->forPage($this->page, $perPage);
         $paginator = new LengthAwarePaginator($items, $collection->count(), $perPage, $this->page);
 
-        $this->changeStatus();
+        // $this->changeStatus();
 
         return view('livewire.notification.index', ['list' => $paginator]);
     }

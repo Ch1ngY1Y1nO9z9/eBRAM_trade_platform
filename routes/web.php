@@ -53,4 +53,13 @@ Route::middleware([
 
     // Notification
     Route::get('/notification', action: App\Http\Livewire\Notification\Index::class)->name('notification');
+    Route::get('/notification/detail/{id}', action: App\Http\Livewire\Notification\Detail::class);
+
+
+    // lawyer
+    Route::get('/case/create', action: App\Http\Livewire\Groups\Create::class)->name('group.create');
+    Route::get('/case/management/edit/{id}', action: App\Http\Livewire\Groups\Edit::class);
+    Route::get('/case/management', action: App\Http\Livewire\Groups\Index::class)->name('group.index');
+
+    Route::put('/switchGroup', [App\Http\Livewire\Groups\SwitchGroup::class, 'update'])->name('group.switchGroup');
 });

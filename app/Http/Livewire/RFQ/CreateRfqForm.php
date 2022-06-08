@@ -55,6 +55,7 @@ class CreateRfqForm extends Component
 
     public function store()
     {
+
         $this->validate();
 
         $this->rfq->buyer_id = auth()->user()->id;
