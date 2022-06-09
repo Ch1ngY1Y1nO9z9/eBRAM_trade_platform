@@ -101,7 +101,7 @@
                             Management</span>
                     </a>
                 </li>
-                @if(Auth()->user()->role !== 'lawyer')
+                {{-- @if(Auth()->user()->role !== 'lawyer')
                     <li class="mr-3 flex-1">
                         <div
                             class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-gray-800 hover:border-pink-500 border-r-4 border-indigo-500 relative group">
@@ -114,12 +114,6 @@
                                         {{ __('Group Settings') }}
                                     </a>
                                 </li>
-                                {{-- <li class="pl-3 mr-3 flex-1">
-                                    <a href="{{ route('teams.create') }}"
-                                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                                        {{ __('Create New Group') }}
-                                    </a>
-                                </li> --}}
                                 <li class="pl-3 mr-3 flex-1">
                                     <div
                                         class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white">
@@ -132,7 +126,7 @@
                             </ul>
                         </div>
                     </li>
-                @endif
+                @endif --}}
             </ul>
         </div>
 

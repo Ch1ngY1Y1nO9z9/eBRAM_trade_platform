@@ -21,7 +21,8 @@ class Index extends Component
 
     public $listeners = [
         'rfq:delete' => 'delete',
-        'rfq:updateList' => '$refresh'
+        'rfq:updateList' => '$refresh',
+        'resetInput'
     ];
 
     public function sortBy($field)
