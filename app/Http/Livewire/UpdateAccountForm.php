@@ -37,7 +37,8 @@ class UpdateAccountForm extends Component
     {
         $this->validate();
 
-        Auth::user()->Account->update([$this->account]);
-        session()->flash('saved', '');
+        if($this->account->save()){
+            $this->emit('saved');
+        }
     }
 }

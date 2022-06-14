@@ -31,7 +31,9 @@ class UpdateProfileLocalizationForm extends Component
     {
         $this->validate();
 
-        $this->local->save();
-        $this->emit('saved');
+        if($this->local->save()){
+            $this->emit('saved');
+        }
+
     }
 }

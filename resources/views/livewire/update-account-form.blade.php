@@ -72,7 +72,7 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="detail" value="{{ __('Detail') }}" />
-            <textarea class="mt-1 block w-full" id="detail" cols="30" rows="10" wire:model="account.detail"></textarea>
+            <textarea class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out mt-1" id="detail" cols="30" rows="10" wire:model="account.detail"></textarea>
         </div>
 
     </x-slot>

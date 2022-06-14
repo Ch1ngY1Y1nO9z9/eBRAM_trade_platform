@@ -9,26 +9,24 @@
 
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="country" value="{{ __('*Country(select version)') }}" />
-            <select id="Taiwan" class="block mt-1 w-full" wire:model.defer="local.country">
-
-                <option value="America" {{ $this->local->country == 'America' ? 'selected' : '' }}>
+            <x-jet-label for="phone_1" value="{{ __('*Country') }}" />
+            <select
+                class="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10 w-full mt-1" wire:model.defer="local.country">
+                <option value="hk">
+                    Hong Kong
+                </option>
+                <option value="jp">
+                    Japan
+                </option>
+                <option value="usa">
                     America
                 </option>
-                <option value="Taiwan" {{ $this->local->country == 'Taiwan' ? 'selected' : '' }}>
-                    Tw
+                <option value="tw">
+                    Taiwan
                 </option>
-
             </select>
-            <x-jet-input-error for="country" class="mt-2" />
+            <x-jet-input-error for="phone_1" class="mt-2" />
         </div>
-
-        <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="country" value="{{ __('*Country') }}" />
-            <x-jet-input id="country" type="text" class="mt-1 block w-full" wire:model.defer="local.country" />
-            <x-jet-input-error for="local.country" class="mt-2" />
-        </div>
-
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="dial" value="{{ __('*Country Code') }}" />
             <x-jet-input id="dial" type="text" class="mt-1 block w-full" wire:model.defer="local.dial" />
@@ -56,10 +54,6 @@
     </x-slot>
 
     <x-slot name="actions">
-        <x-jet-action-message class="mr-3" on="saved">
-            {{ __('Saved.') }}
-        </x-jet-action-message>
-
         <x-jet-button>
             {{ __('Save') }}
         </x-jet-button>

@@ -8,7 +8,9 @@
     @if (!auth()->user()->msgraph_login)
         <div class="bg-red-500 text-white text-lg py-5 flex justify-center">
             Please sign in your microsoft account
-            <a href="/signin" class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition ml-3">Click here to sign in</a>
+            <a href="/signin"
+                class="inline-flex items-center px-4 py-2 bg-blue-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition ml-3">Click
+                here to sign in</a>
         </div>
     @endif
     <div class="mx-auto py-10 sm:px-6 lg:px-8">
@@ -38,5 +40,18 @@
             Swal.fire("{{ Session::get('verify_msg') }}")
         </script>
     @endif
+
+    @push('script')
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Livewire.on('saved', () => {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Update Success!',
+                    icon: 'success',
+                })
+            });
+        </script>
+    @endpush
 
 </x-app-layout>

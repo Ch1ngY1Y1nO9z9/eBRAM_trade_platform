@@ -38,7 +38,8 @@ class User extends Authenticatable
         'jobtitle',
         'tax_code',
         'folder',
-        'status'
+        'status',
+        'country_code'
     ];
 
     /**
