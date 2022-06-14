@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VerifiedCheck
 {
@@ -16,6 +17,11 @@ class VerifiedCheck
      */
     public function handle(Request $request, Closure $next)
     {
+        // 若有登入且網址往signin則直接通過
+        if(Auth::check() && $request->path() == 'signin'){
+
+            return $next($request);
+        }
 
         $user = auth()->user();
 

@@ -26,9 +26,10 @@ Route::get('/role', function () {
     return view('role');
 });
 
-
 Route::post('/forget-password', [CustomPasswordResetLinkController::class, 'postEmail']);
 Route::get('/reset-password/{token}', 'ResetPasswordController@getPassword');
+
+Route::get('/callback', [AuthController::class, 'callback']);
 
 Route::middleware([
     'auth:sanctum',
@@ -74,7 +75,6 @@ Route::middleware([
 
     // microsoft驗證流程
     Route::get('/signin', [AuthController::class, 'signin']);
-    Route::get('/callback', [AuthController::class, 'callback']);
     Route::get('/signout', [AuthController::class, 'signout']);
     Route::get('/scheduler',  action: App\Http\Livewire\Calendar\Index::class);
     Route::get('/scheduler/new', action: App\Http\Livewire\Calendar\Create::class);

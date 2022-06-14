@@ -5,6 +5,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\TokenStore\TokenCache;
 use Illuminate\Http\Request;
 use Microsoft\Graph\Graph;
@@ -84,7 +85,14 @@ class AuthController extends Controller
         $tokenCache = new TokenCache();
         $tokenCache->storeTokens($accessToken, $user);
 
-        return redirect('/');
+        // 新增user已成功signin的紀錄
+        if(auth()->user()->msgraph_login == 0){
+            $user = User::find(auth()->user()->id);
+            $user->msgraph_login = 1;
+            $user->save();
+        }
+
+        return redirect('/dashboard');
       }
       // </StoreTokensSnippet>
       catch (\League\OAuth2\Client\Provider\Exception\IdentityProviderException $e) {

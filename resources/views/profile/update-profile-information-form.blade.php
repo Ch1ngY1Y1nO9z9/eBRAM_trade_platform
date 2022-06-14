@@ -28,7 +28,7 @@
 
                     <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900"
                         wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to re-send the verification email.') }}
+                        {{ __('Click here to send the verification email.') }}
                     </button>
                 </p>
 
