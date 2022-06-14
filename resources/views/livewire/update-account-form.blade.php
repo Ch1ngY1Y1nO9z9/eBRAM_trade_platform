@@ -58,11 +58,11 @@
             <x-jet-input-error for="city" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        {{-- <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="detail" value="{{ __('Detail') }}" />
             <x-jet-input id="detail" type="text" class="mt-1 block w-full" wire:model="account.detail" />
             <x-jet-input-error for="detail" class="mt-2" />
-        </div>
+        </div> --}}
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="status" value="{{ __('Status') }}" />

@@ -2,29 +2,29 @@
 
 namespace App\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class VerifiedCheck
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @param  string|null  ...$guards
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next)
     {
-        $guards = empty($guards) ? [null] : $guards;
 
-        foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
-            }
+        $user = auth()->user();
+
+        if(!$user->email_verified_at){
+            return redirect('/user/profile')->with('verify_msg','please verify your email!');
+        }
+
+        if(!$user->msgraph_login){
+            return redirect('/user/profile')->with('verify_msg', 'please login your microsoft account!');
         }
 
         return $next($request);

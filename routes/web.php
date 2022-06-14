@@ -1,6 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CustomPasswordResetLinkController;
+use App\Http\Controllers\HomeController;
+use App\Http\Middleware\VerifiedCheck;
+use App\TokenStore\TokenCache;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +20,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/role', function () {
     return view('role');
 });
+
 
 Route::post('/forget-password', [CustomPasswordResetLinkController::class, 'postEmail']);
 Route::get('/reset-password/{token}', 'ResetPasswordController@getPassword');
@@ -29,7 +34,10 @@ Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
+])->middleware([VerifiedCheck::class])->group(function () {
+
+    Route::get('/auth_check', [HomeController::class, 'check']);
+
     Route::get('/dashboard', function () {
         return view('/template/index');
     })->name('index');
@@ -62,4 +70,12 @@ Route::middleware([
     Route::get('/case/management', action: App\Http\Livewire\Groups\Index::class)->name('group.index');
 
     Route::put('/switchGroup', [App\Http\Livewire\Groups\SwitchGroup::class, 'update'])->name('group.switchGroup');
+
+
+    // microsoft驗證流程
+    Route::get('/signin', [AuthController::class, 'signin']);
+    Route::get('/callback', [AuthController::class, 'callback']);
+    Route::get('/signout', [AuthController::class, 'signout']);
+    Route::get('/scheduler',  action: App\Http\Livewire\Calendar\Index::class);
+    Route::get('/scheduler/new', action: App\Http\Livewire\Calendar\Create::class);
 });

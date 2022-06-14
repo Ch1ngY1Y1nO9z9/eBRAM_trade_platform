@@ -3,105 +3,106 @@
 
         <div
             class="md:mt-24 md:w-56 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
-            <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
-                <li class="mr-3 flex-1">
-                    <a href="{{ route('index') }}"
-                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dashboard</span>
-                    </a>
-                </li>
+            @if (auth()->user()->email_verified_at && auth()->user()->msgraph_login)
+                <ul class="list-reset flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
+                    <li class="mr-3 flex-1">
+                        <a href="{{ route('index') }}"
+                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <span
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Dashboard</span>
+                        </a>
+                    </li>
 
-                @if (Auth()->user()->role === 'buyer')
-                    <li class="mr-3 flex-1">
-                        <a href="{{ route('creareRFQ') }}"
-                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                            <span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
-                                RFQ</span>
-                        </a>
-                    </li>
-                    <li class="mr-3 flex-1">
-                        <a href="{{ route('findProduct') }}"
-                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                            <span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find
-                                Products</span>
-                        </a>
-                    </li>
-                @endif
+                    @if (Auth()->user()->role === 'buyer')
+                        <li class="mr-3 flex-1">
+                            <a href="{{ route('creareRFQ') }}"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                <span
+                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
+                                    RFQ</span>
+                            </a>
+                        </li>
+                        <li class="mr-3 flex-1">
+                            <a href="{{ route('findProduct') }}"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                <span
+                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find
+                                    Products</span>
+                            </a>
+                        </li>
+                    @endif
 
-                @if (Auth()->user()->role === 'seller')
-                    <li class="mr-3 flex-1">
-                        <a href="{{ route('createProduct') }}"
-                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                            <span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
-                                Products</span>
-                        </a>
-                    </li>
-                    <li class="mr-3 flex-1">
-                        <a href="{{ route('findRFQ') }}"
-                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                            <span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find
-                                RFQ</span>
-                        </a>
-                    </li>
-                @endif
+                    @if (Auth()->user()->role === 'seller')
+                        <li class="mr-3 flex-1">
+                            <a href="{{ route('createProduct') }}"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                <span
+                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
+                                    Products</span>
+                            </a>
+                        </li>
+                        <li class="mr-3 flex-1">
+                            <a href="{{ route('findRFQ') }}"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                <span
+                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Find
+                                    RFQ</span>
+                            </a>
+                        </li>
+                    @endif
 
-                @if (Auth()->user()->role === 'lawyer')
+                    @if (Auth()->user()->role === 'lawyer')
+                        <li class="mr-3 flex-1">
+                            <a href="{{ route('group.create') }}"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                <span
+                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
+                                    Case
+                                </span>
+                            </a>
+                        </li>
+                        <li class="mr-3 flex-1">
+                            <a href="/case/management"
+                                class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                                <span
+                                    class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Case
+                                    Management</span>
+                            </a>
+                        </li>
+                    @endif
+
                     <li class="mr-3 flex-1">
-                        <a href="{{ route('group.create') }}"
+                        <a href="/scheduler"
                             class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                             <span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create
-                                Case
-                            </span>
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Activity
+                                Scheduler</span>
                         </a>
                     </li>
                     <li class="mr-3 flex-1">
-                        <a href="/case/management"
+                        <a href="{{ route('notification') }}"
                             class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
                             <span
-                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Case
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Notification</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="/user/profile"
+                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <span
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">User
+                                profile</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="#"
+                            class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
+                            <span
+                                class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Document
                                 Management</span>
                         </a>
                     </li>
-                @endif
-
-                <li class="mr-3 flex-1">
-                    <a href="#"
-                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Activity
-                            Scheduler</span>
-                    </a>
-                </li>
-                <li class="mr-3 flex-1">
-                    <a href="{{ route('notification') }}"
-                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Notification</span>
-                    </a>
-                </li>
-                <li class="mr-3 flex-1">
-                    <a href="/user/profile"
-                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">User
-                            profile</span>
-                    </a>
-                </li>
-                <li class="mr-3 flex-1">
-                    <a href="#"
-                        class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-gray-800 hover:border-pink-500">
-                        <span
-                            class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Document
-                            Management</span>
-                    </a>
-                </li>
-                {{-- @if(Auth()->user()->role !== 'lawyer')
+                    {{-- @if (Auth()->user()->role !== 'lawyer')
                     <li class="mr-3 flex-1">
                         <div
                             class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-gray-800 hover:border-pink-500 border-r-4 border-indigo-500 relative group">
@@ -127,7 +128,8 @@
                         </div>
                     </li>
                 @endif --}}
-            </ul>
+                </ul>
+            @endif
         </div>
 
 

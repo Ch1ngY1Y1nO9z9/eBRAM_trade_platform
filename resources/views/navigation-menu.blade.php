@@ -49,9 +49,6 @@
                                 <a href={{ route('profile.show') }}
                                     class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i
                                         class="fa fa-user fa-fw"></i> Profile</a>
-                                <a href={{ route('teams.show', Auth::user()->currentTeam->id) }}
-                                    class="p-2 hover:bg-gray-800 text-white text-sm no-underline hover:no-underline block"><i class="fa fa-user fa-fw"></i> Manage Team</a>
-
                                 <div class="border border-gray-800"></div>
                                 <form method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf
