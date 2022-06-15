@@ -21,7 +21,8 @@
 
             <div class="block">
                 <x-jet-label for="email" value="{{ __('Email / Backup Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
+                    autofocus />
             </div>
 
             <div class="flex items-center justify-end mt-4">
@@ -31,4 +32,15 @@
             </div>
         </form>
     </x-jet-authentication-card>
+
+    @if (Session::has('message'))
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                title: 'Success!',
+                text: '{{ Session::get('message') }}',
+                icon: 'success',
+            })
+        </script>
+    @endif
 </x-guest-layout>

@@ -20,6 +20,10 @@ class Index extends Component
 
     public $checkedItem = [];
 
+    public $listeners = [
+        'inq:delete' => 'delete'
+    ];
+
     public function sortBy($field)
     {
         if ($this->sortField === $field) {
@@ -39,7 +43,7 @@ class Index extends Component
         $items = $collection->forPage($this->page, $perPage);
         $paginator = new LengthAwarePaginator($items, $collection->count(), $perPage, $this->page);
 
-        // $this->changeStatus();
+        $this->changeStatus();
 
         return view('livewire.notification.index', ['list' => $paginator]);
     }
@@ -53,5 +57,13 @@ class Index extends Component
             $inq->status = 'read';
             $inq->save();
         }
+    }
+
+    public function delete($id)
+    {
+        $inq = Inquiry::find($id);
+
+        $inq->delete();
+        $this->emit('inq:delete_success');
     }
 }

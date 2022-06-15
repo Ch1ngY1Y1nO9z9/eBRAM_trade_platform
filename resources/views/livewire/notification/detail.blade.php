@@ -9,7 +9,7 @@
 
         <div class="flex flex-wrap py-5 flex-col md:flex-row items-center">
             <a href="/notification"
-                class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Back
+                class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none text-white bg-gray-800 hover:bg-gray-600 rounded text-base mt-4 md:mt-0">Back
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     class="w-4 h-4 ml-1" viewBox="0 0 24 24">
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
@@ -28,40 +28,18 @@
 
             <x-slot name="form">
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="product_type" value="{{ __('*Product Type') }}" />
-                    <x-jet-input id="product_type" type="text" class="mt-1 block w-full"
-                        wire:model="inquiry.product_type" readonly />
-                    <x-jet-input-error for="inquiry.product_type" class="mt-2" />
-                </div>
-
-                <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="product_name" value="{{ __('*Product Name') }}" />
-                    <x-jet-input id="product_name" type="text" class="mt-1 block w-full"
-                        wire:model="inquiry.product_name" readonly />
-                    <x-jet-input-error for="inquiry.product_name" class="mt-2" />
+                    <x-jet-input id="product_name" type="text" class="mt-1 block w-full bg-gray-200" value="{{$data['inquiry']->product_name}}" readonly />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="product_number" value="{{ __('*Require Number') }}" />
-                    <x-jet-input id="product_number" type="number" class="mt-1 block w-full"
-                        wire:model="inquiry.product_number" readonly />
-                    <x-jet-input-error for="inquiry.product_number" class="mt-2" />
-                </div>
-
-                <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="unit" value="{{ __('*Unit') }}" />
-                    <x-jet-input id="unit" type="text" class="mt-1 block w-full" wire:model="inquiry.unit" readonly />
-                    <x-jet-input-error for="inquiry.unit" class="mt-2" />
+                    <x-jet-input id="product_number" type="number" class="mt-1 block w-full bg-gray-200" value="{{$data['inquiry']->number}}" readonly />
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="msg" value="{{ __('*Detail') }}" />
-                    <textarea wire:model="inquiry.msg"
-                        class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                        id="msg" cols="30" rows="10" readonly>
-                        {{$inquiry->msg}}
-                    </textarea>
-                    <x-jet-input-error for="inquiry.msg" class="mt-2" />
+                    <textarea class="w-full rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out mt-1 bg-gray-200" id="detail" cols="30" rows="10" readonly>{{$data['inquiry']->msg}}</textarea>
                 </div>
 
             </x-slot>

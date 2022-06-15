@@ -13,6 +13,10 @@
             </a>
             <div class="ml-3">
                 <input type="text" wire:model="search">
+                <button wire:click.prevent="$refresh()" type="button"
+                    class="inline-flex justify-center rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5 ml-3" wire:loading.attr="disabled" >
+                    Sreach
+                </button>
             </div>
         </div>
 
@@ -27,7 +31,8 @@
                                 <div class="p-6">
                                     <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">
                                         CATEGORY</h2>
-                                    <h1 class="title-font text-lg font-medium text-gray-900 mb-3">{{ $item->product_type }}
+                                    <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
+                                        {{ $item->product_type }}
                                     </h1>
                                     <p class="leading-relaxed mb-3">{{ $item->detail }}</p>
                                     <div class="flex items-center flex-wrap">

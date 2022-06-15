@@ -22,6 +22,14 @@ class UpdateProfileLocalizationForm extends Component
         'local.timeUTC' => 'required',
     ];
 
+    protected $messages = [
+        'local.country.required' => 'Country cannot be empty.',
+        'local.dial.required' => "Country Code cannot be empty.",
+        'local.lang.required' => "Lang cannot be empty.",
+        'local.currency.required' => "Currency can not be empty.",
+        'local.timeUTC.required' => "Timezone can not be empty.",
+    ];
+
     public function render()
     {
         return view('livewire.update-profile-localization-form');

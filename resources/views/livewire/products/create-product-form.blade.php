@@ -22,9 +22,9 @@
                 Photo Preview:
                 <img src="{{ $photo->temporaryUrl() }}">
             @endif
-            <x-jet-label for="photo" value="{{ __('*Upload Image') }}" />
-            <x-jet-input id="photo" type="file" class="mt-1 block w-full" wire:model="photo" />
-            <x-jet-input-error for="rfq.product_image" class="mt-2" />
+            <x-jet-label for="photo" value="{{ __('Upload Image (max size: 1MB)') }}" />
+            <x-jet-input id="photo" type="file" class="mt-1 block w-full" wire:model="photo" accept=".png,.jpg,.PNG,.JPG" />
+            <x-jet-input-error for="product.product_image" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
@@ -36,7 +36,7 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="detail_en" value="{{ __('*Product Detail') }}" />
-            <x-jet-input id="detail_en" type="text" class="mt-1 block w-full" wire:model="product.detail_en" />
+            <textarea class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out mt-1" id="detail" cols="30" rows="10" wire:model="product.detail_en"></textarea>
             <x-jet-input-error for="product.detail_en" class="mt-2" />
         </div>
 

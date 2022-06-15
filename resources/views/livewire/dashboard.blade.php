@@ -82,7 +82,7 @@
     </div>
 
     <div class="p-6 border-t border-gray-200">
-        <div class="flex items-center">
+        <div class="flex items-center">\dashboard
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 viewBox="0 0 24 24" class="w-8 h-8 text-gray-400">
                 <path
@@ -90,7 +90,7 @@
                 </path>
             </svg>
             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a
-                    href="{{ route('teams.create') }}">Current
+                    href="{{ route('notification') }}">Current
                     Case</a></div>
         </div>
 

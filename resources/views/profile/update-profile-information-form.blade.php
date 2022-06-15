@@ -10,7 +10,7 @@
     <x-slot name="form">
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="name" value="{{ __('*Name') }}" />
+            <x-jet-label class="font-bold" for="name" value="{{ __('*Name') }}" />
             <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name"
                 autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
@@ -18,17 +18,18 @@
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('*Email') }}" />
+            <x-jet-label for="email" value="{{ __('Email') }}" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full bg-gray-300" wire:model.defer="state.email" disabled />
             <x-jet-input-error for="email" class="mt-2" />
 
             @unless($this->user->hasVerifiedEmail())
-                <p class="text-sm mt-2">
-                    {{ __('Your email address is unverified.') }}
-
+                <p class="text-sm mt-2 text-red-500">
+                    {{ __('Your email address is unverified. Please check your email to verify your email') }}
+                    <br/>
+                    didn't get verify email?
                     <button type="button" class="underline text-sm text-gray-600 hover:text-gray-900"
                         wire:click.prevent="sendEmailVerification">
-                        {{ __('Click here to send the verification email.') }}
+                        {{ __("Click here") }}
                     </button>
                 </p>
 

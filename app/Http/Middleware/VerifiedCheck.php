@@ -19,7 +19,6 @@ class VerifiedCheck
     {
         // 若有登入且網址往signin則直接通過
         if(Auth::check() && $request->path() == 'signin'){
-
             return $next($request);
         }
 

@@ -125,12 +125,6 @@
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
                         Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
                     </div>
-                    @if(isset($userName))
-                    <h4>Welcome {{ $userName }}!</h4>
-                    <p>Use the navigation bar at the top of the page to get started.</p>
-                  @else
-                    <a href="/signin" class="btn btn-primary btn-large">Click here to sign in</a>
-                  @endif
                 </div>
             </div>
         </div>

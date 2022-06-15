@@ -9,19 +9,17 @@ use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
-    public function getPassword($token)
+    public function getPassword(Request $request, $token)
     {
-        return view('customauth.passwords.reset', ['token' => $token]);
+        return view('auth.reset-password', ['token' => $token, 'request' => $request]);
     }
 
-    public function updatePassword(Request $request)
+    public function storeNewPassword(Request $request)
     {
-
         $request->validate([
             'email' => 'required|email|exists:users',
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required',
-
         ]);
 
         $updatePassword = DB::table('password_resets')

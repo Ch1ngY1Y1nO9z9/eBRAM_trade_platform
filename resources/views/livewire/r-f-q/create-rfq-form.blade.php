@@ -34,10 +34,9 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="detail" value="{{ __('*Detail') }}" />
-            <textarea wire:model="rfq.detail"
-                class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
-                id="detail" cols="30" rows="10"></textarea>
+            <textarea class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out mt-1" id="detail" cols="30" rows="10" wire:model="rfq.detail"></textarea>
             <x-jet-input-error for="rfq.detail" class="mt-2" />
+
         </div>
 
         <div class="col-span-6 sm:col-span-4">
@@ -48,8 +47,8 @@
                 Photo Preview:
                 <img src="{{ $photo->temporaryUrl() }}">
             @endif
-            <x-jet-label for="photo" value="{{ __('*Upload Image') }}" />
-            <x-jet-input id="photo" type="file" class="mt-1 block w-full" wire:model="photo" />
+            <x-jet-label for="photo" value="{{ __('Upload Image') }}" />
+            <x-jet-input id="photo" type="file" class="mt-1 block w-full" wire:model="photo" accept=".png,.jpg,.PNG,.JPG"/>
             <x-jet-input-error for="rfq.product_image" class="mt-2" />
         </div>
 

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CustomPasswordResetLinkController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Middleware\VerifiedCheck;
 use App\TokenStore\TokenCache;
 use Illuminate\Support\Facades\Auth;
@@ -21,13 +22,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/check', [HomeController::class, 'check']);
 
 Route::get('/role', function () {
     return view('role');
 });
 
 Route::post('/forget-password', [CustomPasswordResetLinkController::class, 'postEmail']);
-Route::get('/reset-password/{token}', 'ResetPasswordController@getPassword');
+
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword']);
+Route::post('/storeNewPassword', [ResetPasswordController::class, 'storeNewPassword']);
 
 Route::get('/callback', [AuthController::class, 'callback']);
 
@@ -72,6 +76,8 @@ Route::middleware([
 
     Route::put('/switchGroup', [App\Http\Livewire\Groups\SwitchGroup::class, 'update'])->name('group.switchGroup');
 
+    // 查看所有當前接受的case
+    Route::get('/list', action: App\Http\Livewire\Case\Index::class)->name('case:index');
 
     // microsoft驗證流程
     Route::get('/signin', [AuthController::class, 'signin']);

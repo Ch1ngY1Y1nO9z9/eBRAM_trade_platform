@@ -12,4 +12,14 @@ class HomeController extends Controller
 
       return view('welcome', $viewData);
     }
+
+    public function check()
+    {
+        if (session('userName'))
+        {
+            return redirect('/dashboard');
+        }else{
+            return redirect('/signin');
+        }
+    }
 }

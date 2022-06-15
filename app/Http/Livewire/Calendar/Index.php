@@ -11,6 +11,11 @@ use Microsoft\Graph\Model;
 
 class Index extends Component
 {
+    public $listeners = [
+        'AS:edit' => 'edit',
+        'AS:delete' => 'delete'
+    ];
+
     public function loadViewData()
     {
         $viewData = [];
@@ -22,8 +27,7 @@ class Index extends Component
         }
 
         // Check for logged on user
-        if (session('userName'))
-        {
+        if (session('userName')) {
             $viewData['userName'] = session('userName');
             $viewData['userEmail'] = session('userEmail');
             $viewData['userTimeZone'] = session('userTimeZone');
@@ -34,14 +38,14 @@ class Index extends Component
 
     private function getGraph(): Graph
     {
-      // Get the access token from the cache
-      $tokenCache = new TokenCache();
-      $accessToken = $tokenCache->getAccessToken();
+        // Get the access token from the cache
+        $tokenCache = new TokenCache();
+        $accessToken = $tokenCache->getAccessToken();
 
-      // Create a Graph client
-      $graph = new Graph();
-      $graph->setAccessToken($accessToken);
-      return $graph;
+        // Create a Graph client
+        $graph = new Graph();
+        $graph->setAccessToken($accessToken);
+        return $graph;
     }
 
     public function render()
@@ -57,101 +61,50 @@ class Index extends Component
         $startOfWeek = new \DateTimeImmutable('sunday -1 week', $timezone);
         $endOfWeek = new \DateTimeImmutable('sunday', $timezone);
 
-        $viewData['dateRange'] = $startOfWeek->format('M j, Y').' - '.$endOfWeek->format('M j, Y');
+        $viewData['dateRange'] = $startOfWeek->format('M j, Y') . ' - ' . $endOfWeek->format('M j, Y');
 
         $queryParams = array(
-          'startDateTime' => $startOfWeek->format(\DateTimeInterface::ISO8601),
-          'endDateTime' => $endOfWeek->format(\DateTimeInterface::ISO8601),
-          // Only request the properties used by the app
-          '$select' => 'subject,organizer,start,end',
-          // Sort them by start time
-          '$orderby' => 'start/dateTime',
-          // Limit results to 25
-          '$top' => 25
+            'startDateTime' => $startOfWeek->format(\DateTimeInterface::ISO8601),
+            'endDateTime' => $endOfWeek->format(\DateTimeInterface::ISO8601),
+            // Only request the properties used by the app
+            '$select' => 'subject,organizer,start,end',
+            // Sort them by start time
+            '$orderby' => 'start/dateTime',
+            // Limit results to 25
+            '$top' => 25
         );
 
         // Append query parameters to the '/me/calendarView' url
-        $getEventsUrl = '/me/calendarView?'.http_build_query($queryParams);
+        $getEventsUrl = '/me/calendarView?' . http_build_query($queryParams);
 
         $events = $graph->createRequest('GET', $getEventsUrl)
-          // Add the user's timezone to the Prefer header
-          ->addHeaders(array(
-            'Prefer' => 'outlook.timezone="'.$viewData['userTimeZone'].'"'
-          ))
-          ->setReturnType(Model\Event::class)
-          ->execute();
+            // Add the user's timezone to the Prefer header
+            ->addHeaders(array(
+                'Prefer' => 'outlook.timezone="' . $viewData['userTimeZone'] . '"'
+            ))
+            ->setReturnType(Model\Event::class)
+            ->execute();
 
         $viewData['events'] = $events;
         return view('livewire.calendar.index', $viewData);
-      }
+    }
 
-      // <getNewEventFormSnippet>
-      public function getNewEventForm()
-      {
+    // <getNewEventFormSnippet>
+    public function getNewEventForm()
+    {
         $viewData = $this->loadViewData();
 
         return view('newevent', $viewData);
-      }
-      // </getNewEventFormSnippet>
+    }
+    // </getNewEventFormSnippet>
 
-      // <createNewEventSnippet>
-      public function createNewEvent(Request $request)
-      {
-        // Validate required fields
-        $request->validate([
-          'eventSubject' => 'nullable|string',
-          'eventAttendees' => 'nullable|string',
-          'eventStart' => 'required|date',
-          'eventEnd' => 'required|date',
-          'eventBody' => 'nullable|string'
-        ]);
-
-        $viewData = $this->loadViewData();
-
+    public function delete($id)
+    {
         $graph = $this->getGraph();
+        $url = '/me/events' . $id;
 
-        // Attendees from form are a semi-colon delimited list of
-        // email addresses
-        $attendeeAddresses = explode(';', $request->eventAttendees);
-
-        // The Attendee object in Graph is complex, so build the structure
-        $attendees = [];
-        foreach($attendeeAddresses as $attendeeAddress)
-        {
-          array_push($attendees, [
-            // Add the email address in the emailAddress property
-            'emailAddress' => [
-              'address' => $attendeeAddress
-            ],
-            // Set the attendee type to required
-            'type' => 'required'
-          ]);
-        }
-
-        // Build the event
-        $newEvent = [
-          'subject' => $request->eventSubject,
-          'attendees' => $attendees,
-          'start' => [
-            'dateTime' => $request->eventStart,
-            'timeZone' => $viewData['userTimeZone']
-          ],
-          'end' => [
-            'dateTime' => $request->eventEnd,
-            'timeZone' => $viewData['userTimeZone']
-          ],
-          'body' => [
-            'content' => $request->eventBody,
-            'contentType' => 'text'
-          ]
-        ];
-
-        // POST /me/events
-        $response = $graph->createRequest('POST', '/me/events')
-          ->attachBody($newEvent)
-          ->setReturnType(Model\Event::class)
-          ->execute();
-
-        return redirect('/calendar');
+        $response = $graph->createRequest('delete', $url)
+            ->setReturnType(Model\Event::class)
+            ->execute();
     }
 }

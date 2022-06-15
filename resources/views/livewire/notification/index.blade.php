@@ -69,15 +69,19 @@
                                                 <a href="/notification/detail/{{ $item->id }}"
                                                     class="bg-green-700 hover:bg-green-500 text-white font-bold py-2 px-4 rounded mr-3">Detail</a>
                                                 @if ($item->rfq_id)
-                                                    <a class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
-                                                        href="/teams/create?with={{ App\Models\User::find($item->seller_id)->name }}">Accept</a>
+                                                    {{-- <a class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
+                                                        href="/teams/create?with={{ App\Models\User::find($item->seller_id)->name }}">Accept</a> --}}
+                                                        <a class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
+                                                        href="#">Accept</a>
                                                 @elseif($item->product_id)
-                                                    <a class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
-                                                        href="/teams/create?with={{ App\Models\User::find($item->buyer_id)->name }}">Accept</a>
+                                                    {{-- <a class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
+                                                        href="/teams/create?with={{ App\Models\User::find($item->buyer_id)->name }}">Accept</a> --}}
+                                                        <a class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
+                                                        href="#">Accept</a>
                                                 @endif
                                                 <button
                                                     class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
-                                                    wire:click="$emit('inq:delete',{{ $item->id }})">cancel</button>
+                                                    wire:click="$emit('inq:confirm',{{ $item->id }})">cancel</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -99,23 +103,23 @@
 @push('script')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        Livewire.on('rfq:confirm', $id => {
+        Livewire.on('inq:confirm', $id => {
             Swal.fire({
-                title: 'Are you sure delete the RFQ?',
+                title: 'Are you sure to reject this inquiry?',
                 showDenyButton: true,
                 confirmButtonText: 'Yes',
                 denyButtonText: `No`,
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    Livewire.emit('rfq:delete', $id)
+                    Livewire.emit('inq:delete', $id)
                 } else if (result.isDenied) {
 
                 }
             })
         });
 
-        Livewire.on('rfq:delete_success', () => {
+        Livewire.on('inq:delete_success', () => {
             Swal.fire({
                 title: 'Success!',
                 text: 'Delete Success!',

@@ -83,10 +83,10 @@
                                             <button
                                                 class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
                                                 wire:click="$emit('pd:edit',{{ $item->id }})"
-                                                @click="open = !open">詳細</button>
+                                                @click="open = !open">Check</button>
                                             <button
                                                 class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
-                                                wire:click="$emit('pd:confirm',{{ $item->id }})">取消</button>
+                                                wire:click="$emit('pd:confirm',{{ $item->id }})">Cancel</button>
                                         </div>
                                     </td>
                                 </tr>

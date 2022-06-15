@@ -7,11 +7,11 @@ use Livewire\Component;
 
 class Detail extends Component
 {
-    public $inquiry;
+    public $data = ['inquiry' => null];
 
     public function mount($id)
     {
-        $this->inquiry = Inquiry::find($id);
+        $this->data['inquiry'] = Inquiry::find($id);
     }
 
     public function render()
