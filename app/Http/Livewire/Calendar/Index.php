@@ -67,7 +67,7 @@ class Index extends Component
             'startDateTime' => $startOfWeek->format(\DateTimeInterface::ISO8601),
             'endDateTime' => $endOfWeek->format(\DateTimeInterface::ISO8601),
             // Only request the properties used by the app
-            '$select' => 'subject,organizer,start,end',
+            '$select' => 'subject,organizer,start,end,isOnlineMeeting,onlineMeeting,onlineMeetingProvider',
             // Sort them by start time
             '$orderby' => 'start/dateTime',
             // Limit results to 25
@@ -86,6 +86,8 @@ class Index extends Component
             ->execute();
 
         $viewData['events'] = $events;
+
+
         return view('livewire.calendar.index', $viewData);
     }
 
@@ -101,9 +103,9 @@ class Index extends Component
     public function delete($id)
     {
         $graph = $this->getGraph();
-        $url = '/me/events' . $id;
+        $url = '/me/events/' . $id;
 
-        $response = $graph->createRequest('delete', $url)
+        $response = $graph->createRequest('DELETE', $url)
             ->setReturnType(Model\Event::class)
             ->execute();
     }

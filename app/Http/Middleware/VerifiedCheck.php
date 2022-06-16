@@ -17,19 +17,10 @@ class VerifiedCheck
      */
     public function handle(Request $request, Closure $next)
     {
-        // 若有登入且網址往signin則直接通過
-        if(Auth::check() && $request->path() == 'signin'){
-            return $next($request);
-        }
-
         $user = auth()->user();
 
-        if(!$user->email_verified_at){
-            return redirect('/user/profile')->with('verify_msg','please verify your email!');
-        }
-
-        if(!$user->msgraph_login){
-            return redirect('/user/profile')->with('verify_msg', 'please login your microsoft account!');
+        if(!$user->role){
+            return redirect('/user/profile')->with('verify_msg','please select your role before access the site!');
         }
 
         return $next($request);

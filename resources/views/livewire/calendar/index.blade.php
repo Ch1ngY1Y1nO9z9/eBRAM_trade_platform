@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Calendar') }}
+            {{ __('Scheduler') }}
         </h2>
     </x-slot>
     <div class="flex flex-col x-auto py-10 sm:px-6 lg:px-8">
@@ -34,6 +34,9 @@
                                 <th scope="col" class="py-3 bg-gray-50 font-medium text-gray-500">
                                     End
                                 </th>
+                                <th scope="col" class="py-3 bg-gray-50 font-medium text-gray-500">
+                                    Meeting URL
+                                </th>
                                 <th>
 
                                 </th>
@@ -51,8 +54,17 @@
                                         <td>{{ \Carbon\Carbon::parse($event->getEnd()->getDateTime())->format('n/j/y g:i A') }}
                                         </td>
                                         <td>
-                                            <button wire:click="$emit('AS:edit', '{{$event->getId()}}')" class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 disabled:opacity-25 transition">Edit</button>
-                                            <button wire:click="$emit('AS:delete', '{{$event->getId()}}')" class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 disabled:opacity-25 transition">Delete</button>
+                                            @if ($event->getIsOnlineMeeting())
+                                                <a href="{{ $event->getOnlineMeeting()->getjoinUrl() }}">Meeting URL</a>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a wire:click="$emit('AS:edit', '{{ $event->getId() }}')"
+                                                class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 disabled:opacity-25 transition">Edit</a>
+                                            <button wire:click="$emit('AS:delete', '{{ $event->getId() }}')"
+                                                class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 disabled:opacity-25 transition">Delete</button>
                                         </td>
                                     </tr>
                                 @endforeach

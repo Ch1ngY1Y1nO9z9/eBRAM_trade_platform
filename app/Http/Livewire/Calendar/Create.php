@@ -15,13 +15,15 @@ class Create extends Component
     public $eventStart;
     public $eventEnd;
     public $eventBody;
+    public $eventMeeting;
 
     protected $rules = [
         'eventSubject' => 'nullable|string',
         'eventAttendees' => 'nullable|string',
         'eventStart' => 'required|date',
         'eventEnd' => 'required|date',
-        'eventBody' => 'nullable|string'
+        'eventBody' => 'nullable|string',
+        'eventMeeting' => 'nullable|boolean'
     ];
 
     public function loadViewData()
@@ -35,8 +37,7 @@ class Create extends Component
         }
 
         // Check for logged on user
-        if (session('userName'))
-        {
+        if (session('userName')) {
             $viewData['userName'] = session('userName');
             $viewData['userEmail'] = session('userEmail');
             $viewData['userTimeZone'] = session('userTimeZone');
@@ -47,22 +48,23 @@ class Create extends Component
 
     private function getGraph(): Graph
     {
-      // Get the access token from the cache
-      $tokenCache = new TokenCache();
-      $accessToken = $tokenCache->getAccessToken();
+        // Get the access token from the cache
+        $tokenCache = new TokenCache();
+        $accessToken = $tokenCache->getAccessToken();
 
-      // Create a Graph client
-      $graph = new Graph();
-      $graph->setAccessToken($accessToken);
-      return $graph;
+        // Create a Graph client
+        $graph = new Graph();
+        $graph->setAccessToken($accessToken);
+        return $graph;
     }
 
     public function mount()
     {
         $date = date('Y-m-d', time());
-        $time = date('h:i', time());
-        $this->eventStart = $date.'T'.$time;
-        $this->eventEnd = $date.'T'.$time;
+        $stime = date('h:i', time());
+        $etime = date('h:i', time() + 1800);
+        $this->eventStart = $date . 'T' . $stime;
+        $this->eventEnd = $date . 'T' . $etime;
     }
 
     public function render()
@@ -72,55 +74,81 @@ class Create extends Component
 
     public function createNewEvent()
     {
-      // Validate required fields
-      $this->validate();
+        // Validate required fields
+        $this->validate();
 
-      $viewData = $this->loadViewData();
+        $viewData = $this->loadViewData();
 
-      $graph = $this->getGraph();
+        $graph = $this->getGraph();
 
-      // Attendees from form are a semi-colon delimited list of
-      // email addresses
-      $attendeeAddresses = explode(';', $this->eventAttendees);
+        // Attendees from form are a semi-colon delimited list of
+        // email addresses
+        $attendeeAddresses = explode(';', $this->eventAttendees);
 
-      // The Attendee object in Graph is complex, so build the structure
-      $attendees = [];
-      foreach($attendeeAddresses as $attendeeAddress)
-      {
-        array_push($attendees, [
-          // Add the email address in the emailAddress property
-          'emailAddress' => [
-            'address' => $attendeeAddress
-          ],
-          // Set the attendee type to required
-          'type' => 'required'
-        ]);
-      }
+        // The Attendee object in Graph is complex, so build the structure
+        $attendees = [];
+        foreach ($attendeeAddresses as $attendeeAddress) {
+            array_push($attendees, [
+                // Add the email address in the emailAddress property
+                'emailAddress' => [
+                    'address' => $attendeeAddress
+                ],
+                // Set the attendee type to required
+                'type' => 'required'
+            ]);
+        }
 
-      // Build the event
-      $newEvent = [
-        'subject' => $this->eventSubject,
-        'attendees' => $attendees,
-        'start' => [
-          'dateTime' => $this->eventStart,
-          'timeZone' => $viewData['userTimeZone']
-        ],
-        'end' => [
-          'dateTime' => $this->eventEnd,
-          'timeZone' => $viewData['userTimeZone']
-        ],
-        'body' => [
-          'content' => $this->eventBody,
-          'contentType' => 'text'
-        ]
-      ];
+        if ($this->eventMeeting) {
+            // Build the event
+            $newEvent = [
+                'subject' => $this->eventSubject,
+                'attendees' => $attendees,
+                'start' => [
+                    'dateTime' => $this->eventStart,
+                    'timeZone' => $viewData['userTimeZone']
+                ],
+                'end' => [
+                    'dateTime' => $this->eventEnd,
+                    'timeZone' => $viewData['userTimeZone']
+                ],
+                'body' => [
+                    'content' => $this->eventBody,
+                    'contentType' => 'text'
+                ],
+                'location' => [
+                    'displayName' => 'Harry\'s Bar'
+                ],
+                "allowNewTimeProposals" => true,
+                "isOnlineMeeting" => $this->eventSubject,
+                "onlineMeetingProvider" => "teamsForBusiness"
+            ];
+        } else {
+            // Build the event
+            $newEvent = [
+                'subject' => $this->eventSubject,
+                'attendees' => $attendees,
+                'start' => [
+                    'dateTime' => $this->eventStart,
+                    'timeZone' => $viewData['userTimeZone']
+                ],
+                'end' => [
+                    'dateTime' => $this->eventEnd,
+                    'timeZone' => $viewData['userTimeZone']
+                ],
+                'body' => [
+                    'content' => $this->eventBody,
+                    'contentType' => 'text'
+                ]
+            ];
+        }
 
-      // POST /me/events
-      $response = $graph->createRequest('POST', '/me/events')
-        ->attachBody($newEvent)
-        ->setReturnType(Model\Event::class)
-        ->execute();
 
-      return redirect('/calendar');
+        // POST /me/events
+        $response = $graph->createRequest('POST', '/me/events')
+            ->attachBody($newEvent)
+            ->setReturnType(Model\Event::class)
+            ->execute();
+
+        return redirect('/scheduler');
     }
 }

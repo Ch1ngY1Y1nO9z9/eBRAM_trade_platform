@@ -33,6 +33,8 @@ Route::post('/forget-password', [CustomPasswordResetLinkController::class, 'post
 Route::get('/reset-password/{token}', [ResetPasswordController::class, 'getPassword']);
 Route::post('/storeNewPassword', [ResetPasswordController::class, 'storeNewPassword']);
 
+
+Route::get('/signin', [AuthController::class, 'signin']);
 Route::get('/callback', [AuthController::class, 'callback']);
 
 Route::middleware([
@@ -80,8 +82,9 @@ Route::middleware([
     Route::get('/list', action: App\Http\Livewire\Case\Index::class)->name('case:index');
 
     // microsoft驗證流程
-    Route::get('/signin', [AuthController::class, 'signin']);
+
     Route::get('/signout', [AuthController::class, 'signout']);
     Route::get('/scheduler',  action: App\Http\Livewire\Calendar\Index::class);
     Route::get('/scheduler/new', action: App\Http\Livewire\Calendar\Create::class);
+    Route::get('/scheduler/{edit}', action: App\Http\Livewire\Calendar\Edit::class);
 });

@@ -15,11 +15,11 @@ class HomeController extends Controller
 
     public function check()
     {
-        if (session('userName'))
+        if (auth()->user()->role)
         {
             return redirect('/dashboard');
         }else{
-            return redirect('/signin');
+            return redirect('/user/profile');
         }
     }
 }

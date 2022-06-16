@@ -28,32 +28,37 @@
 
             <x-slot name="form">
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="subject" value="{{ __('Subject') }}" />
+                    <x-jet-label for="subject" value="{{ __('*Subject') }}" />
                     <x-jet-input id="subject" type="text" class="mt-1 block w-full" wire:model.defer="eventSubject"
                         autofocus />
                     <x-jet-input-error for="subject" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="attendees" value="{{ __('Attendees') }}" />
+                    <x-jet-label for="attendees" value="{{ __('*Attendees') }}" />
                     <x-jet-input id="attendees" type="text" class="mt-1 block w-full"
                         wire:model.defer="eventAttendees" />
                     <x-jet-input-error for="attendees" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="eventStart" value="{{ __('eventStart') }}" />
+                    <x-jet-label for="eventStart" value="{{ __('*Start') }}" />
                     <x-jet-input id="eventStart" type="datetime-local" class="mt-1 block w-full"
                         wire:model.defer="eventStart" />
                     <x-jet-input-error for="eventStart" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-4">
-                    <x-jet-label for="eventEnd" value="{{ __('End') }}" />
+                    <x-jet-label for="eventEnd" value="{{ __('*End') }}" />
                     <x-jet-input id="eventEnd" type="datetime-local" class="mt-1 block w-full"
                         wire:model.defer="eventEnd" />
                     <x-jet-input-error for="eventEnd" class="mt-2" />
                 </div>
                 <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="eventMeeting" value="{{ __('Create an online meeting?') }}" />
+                    <x-jet-checkbox wire:model.defer="eventMeeting" id="eventMeeting" />
+                    <x-jet-input-error for="eventMeeting" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="eventBody" value="{{ __('Body') }}" />
-                    <textarea wire:model="eventBody"
+                    <textarea wire:model.defer="eventBody"
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
                         id="detail" cols="30" rows="10"></textarea>
                     <x-jet-input-error for="eventBody" class="mt-2" />

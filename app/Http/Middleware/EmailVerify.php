@@ -16,9 +16,6 @@ class EmailVerify
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::user()->email_verified_at){
-            return redirect()->route('profile.show');
-        }
         return $next($request);
     }
 }
