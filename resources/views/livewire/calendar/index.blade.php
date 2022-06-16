@@ -37,8 +37,7 @@
                                 <th scope="col" class="py-3 bg-gray-50 font-medium text-gray-500">
                                     Meeting URL
                                 </th>
-                                <th>
-
+                                <th scope="col" class="py-3 bg-gray-50 font-medium text-gray-500">
                                 </th>
                             </tr>
                         </thead>
@@ -61,7 +60,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a wire:click="$emit('AS:edit', '{{ $event->getId() }}')"
+                                            <a href="/scheduler/{{ $event->getId() }}"
                                                 class="inline-flex items-center px-4 py-2 bg-green-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-700 disabled:opacity-25 transition">Edit</a>
                                             <button wire:click="$emit('AS:delete', '{{ $event->getId() }}')"
                                                 class="inline-flex items-center px-4 py-2 bg-red-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-700 disabled:opacity-25 transition">Delete</button>

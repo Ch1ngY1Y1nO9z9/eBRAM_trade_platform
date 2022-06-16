@@ -87,8 +87,6 @@ class CreateProductForm extends Component
         if ($this->product->save()) {
             $this->emit('swal:success');
             $this->reset();
-            $this->product = new Products;
-            $this->photo = null;
             $this->emit('pd:updateList');
         };
     }

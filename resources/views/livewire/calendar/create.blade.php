@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Calendar') }}
+            {{ __('Scheduler') }}
         </h2>
     </x-slot>
     <div class="flex flex-col x-auto py-10 sm:px-6 lg:px-8">
@@ -56,13 +56,13 @@
                     <x-jet-checkbox wire:model.defer="eventMeeting" id="eventMeeting" />
                     <x-jet-input-error for="eventMeeting" class="mt-2" />
                 </div>
-                <div class="col-span-6 sm:col-span-4">
+                {{-- <div class="col-span-6 sm:col-span-4">
                     <x-jet-label for="eventBody" value="{{ __('Body') }}" />
                     <textarea wire:model.defer="eventBody"
                         class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm mt-1 block w-full"
                         id="detail" cols="30" rows="10"></textarea>
                     <x-jet-input-error for="eventBody" class="mt-2" />
-                </div>
+                </div> --}}
             </x-slot>
 
             <x-slot name="actions">
@@ -70,7 +70,7 @@
                     {{ __('Create') }}
                 </x-jet-button>
 
-                <a class="btn btn-secondary ml-3" href="/calendar">Cancel</a>
+                <a class="btn btn-secondary ml-3" href="/scheduler">Cancel</a>
             </x-slot>
         </x-jet-form-section>
     </div>

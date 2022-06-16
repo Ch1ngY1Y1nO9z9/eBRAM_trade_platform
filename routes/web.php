@@ -79,12 +79,16 @@ Route::middleware([
     Route::put('/switchGroup', [App\Http\Livewire\Groups\SwitchGroup::class, 'update'])->name('group.switchGroup');
 
     // 查看所有當前接受的case
-    Route::get('/list', action: App\Http\Livewire\Case\Index::class)->name('case:index');
+    Route::get('/list', action: App\Http\Livewire\Case\Index::class)->name('deal:index');
 
     // microsoft驗證流程
-
     Route::get('/signout', [AuthController::class, 'signout']);
+
+    // scheduler
     Route::get('/scheduler',  action: App\Http\Livewire\Calendar\Index::class);
     Route::get('/scheduler/new', action: App\Http\Livewire\Calendar\Create::class);
-    Route::get('/scheduler/{edit}', action: App\Http\Livewire\Calendar\Edit::class);
+    Route::get('/scheduler/{id}', action: App\Http\Livewire\Calendar\Edit::class);
+
+    // document management
+    Route::get('/document_management' ,action: App\Http\Livewire\FileManagement\Index::class)->name('management:index');
 });

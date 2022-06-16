@@ -119,7 +119,7 @@ class Create extends Component
                     'displayName' => 'Harry\'s Bar'
                 ],
                 "allowNewTimeProposals" => true,
-                "isOnlineMeeting" => $this->eventSubject,
+                "isOnlineMeeting" => $this->eventMeeting,
                 "onlineMeetingProvider" => "teamsForBusiness"
             ];
         } else {

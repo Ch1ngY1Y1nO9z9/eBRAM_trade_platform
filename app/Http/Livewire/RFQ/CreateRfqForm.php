@@ -82,8 +82,6 @@ class CreateRfqForm extends Component
         if ($this->rfq->save()) {
             $this->emit('swal:success');
             $this->reset();
-            $this->rfq = new RFQ();
-            $this->photo = null;
             $this->emit('rfq:updateList');
         }
     }

@@ -83,10 +83,10 @@
                                             <button
                                                 class="bg-blue-700 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-3"
                                                 wire:click="$emit('rfq:edit',{{ $item->id }})"
-                                                @click="open = !open">詳細</button>
+                                                @click="open = !open">Detail</button>
                                             <button
                                                 class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded"
-                                                wire:click="$emit('rfq:confirm',{{ $item->id }})">取消</button>
+                                                wire:click="$emit('rfq:confirm',{{ $item->id }})">Delete</button>
                                         </div>
                                     </td>
                                 </tr>

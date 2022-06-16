@@ -1,14 +1,14 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('RFQ Detail') }}
+            {{ __('Product Detail') }}
         </h2>
     </x-slot>
 
     <div class="mx-auto py-10 sm:px-6 lg:px-8">
 
         <div class="flex flex-wrap py-5 flex-col md:flex-row items-center">
-            <a href="/find_rfq" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <a href="/find_product" class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                 <span class="text-xl">
                     < Back</span>
             </a>

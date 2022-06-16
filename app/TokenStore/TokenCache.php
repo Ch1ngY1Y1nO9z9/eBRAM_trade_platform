@@ -36,7 +36,7 @@ class TokenCache {
 
     // Check if token is expired
     //Get current time + 5 minutes (to allow for time differences)
-    $now = time() + 300;
+    $now = time() + 3000;
     if (session('tokenExpires') <= $now) {
       // Token is expired (or very close to it)
       // so let's refresh
